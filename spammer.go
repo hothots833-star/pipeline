@@ -8,10 +8,6 @@ import (
 
 func RunPipeline(cmds ...cmd) {
 	in := make(chan interface{})
-	firstIn := in
-	go func() {
-		close(firstIn)
-	}()
 	for _, c := range cmds {
 		out := make(chan interface{})
 		go func(cmd cmd, in, out chan interface{}) {
